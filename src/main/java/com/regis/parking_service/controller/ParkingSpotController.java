@@ -26,12 +26,12 @@ public class ParkingSpotController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Vaga do estacionamento cadastrada com sucesso")
     })
-    public ResponseEntity<ParkingSpotResponseDto> saveParkingSpot(
+    public ResponseEntity saveParkingSpot(
             @RequestBody ParkingSpotRequestDto parkingSpotRequestDto) {
 
-        ParkingSpotResponseDto parkingSpotResponseDto = parkingSpotService.createNewParkingSpot(parkingSpotRequestDto);
+        ParkingSpotRequestDto response = parkingSpotService.createNewParkingSpot(parkingSpotRequestDto);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotResponseDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }

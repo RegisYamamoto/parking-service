@@ -24,7 +24,7 @@ public class ParkingSpot {
     @Column(name = "parking_spot_number", nullable = false, length = 10)
     private String parkingSpotNumber;
 
-    @Column(name = "license_plate", nullable = false, length = 7)
+    @Column(name = "license_plate", nullable = false, length = 8)
     private String licensePlate;
 
     @Column(name = "car_brand", nullable = false, length = 70)

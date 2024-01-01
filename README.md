@@ -22,3 +22,4 @@ TODO:
 - Rodar com Docker
 - Escrever teste unitário
 - Tratar erros
+- Conferir se vai salvar data em UTC no banco
