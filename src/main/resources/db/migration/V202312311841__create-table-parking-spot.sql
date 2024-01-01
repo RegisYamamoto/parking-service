@@ -6,5 +6,7 @@ CREATE TABLE parking_spot(
     car_model VARCHAR(70) NOT NULL COMMENT 'Modelo do carro',
     car_color VARCHAR(70) NOT NULL COMMENT 'Cor do carro',
     registration_date TIMESTAMP NOT NULL COMMENT 'Data do cadastro',
-    responsible_name VARCHAR (130) NOT NULL COMMENT 'Nome do responsavel'
+    responsible_name VARCHAR (130) NOT NULL COMMENT 'Nome do responsavel',
+    apartment VARCHAR(30) COMMENT 'Apartamento',
+    block VARCHAR(30) COMMENT 'Bloco'
 );
