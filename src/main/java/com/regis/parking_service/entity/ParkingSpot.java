@@ -21,25 +21,25 @@ public class ParkingSpot {
     @Column(name = "id", nullable = false, length = 36)
     private UUID id;
 
-    @Column(name = "parking_spot_number", length = 10)
+    @Column(name = "parking_spot_number", nullable = false, length = 10)
     private String parkingSpotNumber;
 
-    @Column(name = "license_plate", length = 7)
+    @Column(name = "license_plate", nullable = false, length = 7)
     private String licensePlate;
 
-    @Column(name = "car_brand", length = 70)
+    @Column(name = "car_brand", nullable = false, length = 70)
     private String carBrand;
 
-    @Column(name = "car_model", length = 70)
+    @Column(name = "car_model", nullable = false, length = 70)
     private String carModel;
 
-    @Column(name = "car_color", length = 70)
+    @Column(name = "car_color", nullable = false, length = 70)
     private String carColor;
 
-    @Column(name = "registration_date")
+    @Column(name = "registration_date", nullable = false)
     private OffsetDateTime registrationDate;
 
-    @Column(name = "responsible_name", length = 130)
+    @Column(name = "responsible_name", nullable = false, length = 130)
     private String responsibleName;
 
     @Column(name = "apartment", length = 30)

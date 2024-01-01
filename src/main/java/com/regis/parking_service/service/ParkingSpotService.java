@@ -3,6 +3,7 @@ package com.regis.parking_service.service;
 import com.regis.parking_service.controller.dto.ParkingSpotRequestDto;
 import com.regis.parking_service.controller.dto.ParkingSpotResponseDto;
 import com.regis.parking_service.entity.ParkingSpot;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,7 @@ public class ParkingSpotService {
     private ParkingSpotValidator parkingSpotValidator;
 
     public ParkingSpotResponseDto createNewParkingSpot(ParkingSpotRequestDto parkingSpotRequestDto) {
-        if (parkingSpotValidator.existsByLicensePlateCar(parkingSpotRequestDto.licensePlate())) {
-//            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Licence Plate Car is already in use");
-        }
+        parkingSpotValidator.validateRequest(parkingSpotRequestDto);
 
         ParkingSpot parkingSpot = parkingSpotFactory(parkingSpotRequestDto);
 

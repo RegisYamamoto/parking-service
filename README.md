@@ -20,3 +20,5 @@ TODO:
 - JWT
 - Documentação
 - Rodar com Docker
+- Escrever teste unitário
+- Tratar erros
