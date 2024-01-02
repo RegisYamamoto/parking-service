@@ -24,7 +24,10 @@ public class ParkingSpotController {
     @PostMapping
     @Operation(summary = "Realiza o cadastro de vagas de estacionamento", method = "POST")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Vaga do estacionamento cadastrada com sucesso")
+            @ApiResponse(responseCode = "201", description = "Vaga do estacionamento cadastrada com sucesso"),
+            @ApiResponse(responseCode = "409", description =
+                    "Ja existe a placa desse veiculo cadastrada no sistema ou Essa vaga ja esta cadastrada para" +
+                            "outro usuario ou Essa vaga ja esta cadastrada para outro apartamento")
     })
     public ResponseEntity saveParkingSpot(
             @RequestBody ParkingSpotRequestDto parkingSpotRequestDto) {

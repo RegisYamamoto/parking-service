@@ -26,7 +26,6 @@ public class ParkingSpotValidator {
     }
 
     public boolean existsByLicensePlateCar(String licensePlate) {
-        boolean b = parkingSpotRepository.existsByLicensePlate(licensePlate);
         return parkingSpotRepository.existsByLicensePlate(licensePlate);
     }
 
