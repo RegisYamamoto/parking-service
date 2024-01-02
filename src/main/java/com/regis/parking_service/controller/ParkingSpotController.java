@@ -1,7 +1,6 @@
 package com.regis.parking_service.controller;
 
 import com.regis.parking_service.controller.dto.ParkingSpotRequestDto;
-import com.regis.parking_service.controller.dto.ParkingSpotResponseDto;
 import com.regis.parking_service.service.ParkingSpotService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@CrossOrigin(origins = "http://example.com", maxAge = 3600)
+@CrossOrigin(origins = "http://example.com", maxAge = 3600)
 @RequestMapping(value = "/parking-spots")
 @Tag(name = "parking-spot-api")
 public class ParkingSpotController {

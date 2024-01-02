@@ -1,6 +1,5 @@
 package com.regis.parking_service.controller.dto;
 
-import java.time.OffsetDateTime;
 
 public record ParkingSpotRequestDto(
         String parkingSpotNumber,
