@@ -29,7 +29,7 @@ public class ParkingSpotController {
     public ResponseEntity saveParkingSpot(
             @RequestBody ParkingSpotRequestDto parkingSpotRequestDto) {
 
-        ParkingSpotRequestDto response = parkingSpotService.createNewParkingSpot(parkingSpotRequestDto);
+        parkingSpotService.createNewParkingSpot(parkingSpotRequestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

@@ -1,6 +1,7 @@
 Serviço para controlar as vagas de estacionamento de um estabelecimento (condomínios, comércios, etc).
 
 Como executar a aplicação:
+- Ter a JDK 21 instalada na máquina
 - Ter o Docker instalado na máquina
 - Entrar no diretório raiz do projeto, e pelo terminal e executar o comando docker compose up -d
 - Entrar na classe/metodo ParkingServiceApplication.class/main(String[] args)

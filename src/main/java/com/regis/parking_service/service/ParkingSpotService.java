@@ -23,14 +23,14 @@ public class ParkingSpotService {
     @Autowired
     private ParkingSpotRepository parkingSpotRepository;
 
-    public ParkingSpotRequestDto createNewParkingSpot(ParkingSpotRequestDto parkingSpotRequestDto) {
+    public ResponseEntity createNewParkingSpot(ParkingSpotRequestDto parkingSpotRequestDto) {
         parkingSpotValidator.validateRequest(parkingSpotRequestDto);
 
         ParkingSpot parkingSpot = parkingSpotFactory(parkingSpotRequestDto);
 
         parkingSpotRepository.save(parkingSpot);
 
-        return null;
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     public ParkingSpot parkingSpotFactory(ParkingSpotRequestDto parkingSpotRequestDto) {

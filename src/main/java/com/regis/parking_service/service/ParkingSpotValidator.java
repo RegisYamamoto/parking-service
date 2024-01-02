@@ -3,7 +3,9 @@ package com.regis.parking_service.service;
 import com.regis.parking_service.controller.dto.ParkingSpotRequestDto;
 import com.regis.parking_service.repository.ParkingSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 @Component
 public class ParkingSpotValidator {
@@ -13,16 +15,13 @@ public class ParkingSpotValidator {
 
     public void validateRequest(ParkingSpotRequestDto parkingSpotRequestDto) {
         if (existsByLicensePlateCar(parkingSpotRequestDto.licensePlate())) {
-            // TODO lançar exception
-//            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Licence Plate Car is already in use");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Ja existe a placa desse veiculo cadastrada no sistema");
         }
         if (existsByParkingSpotNumber(parkingSpotRequestDto.parkingSpotNumber())) {
-            // TODO lançar exception
-//            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot is already in use");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Essa vaga ja esta cadastrada para outro usuario");
         }
         if (existsByApartmentAndBlock(parkingSpotRequestDto.apartment(), parkingSpotRequestDto.block())) {
-            // TODO lançar exception
-//            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot already registered for this apartament/block");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Essa vaga ja esta cadastrada para outro apartamento");
         }
     }
 
