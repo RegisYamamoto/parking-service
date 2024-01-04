@@ -26,7 +26,4 @@ Exemplo de payload:
 TODO:
 - JWT
 - Documentação
-- Rodar com Docker
 - Escrever teste unitário
-- Tratar erros com @ControllerAdvice
-- Conferir se vai salvar data em UTC no banco
