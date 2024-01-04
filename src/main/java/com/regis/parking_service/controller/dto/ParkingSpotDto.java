@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Getter
@@ -30,6 +31,7 @@ public class ParkingSpotDto {
     @NotNull
     @NotBlank
     private String carColor;
+    private OffsetDateTime registrationDate;
     @NotNull
     @NotBlank
     private String responsibleName;
