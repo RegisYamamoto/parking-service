@@ -41,6 +41,10 @@ public class ParkingSpotController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @Operation(summary = "Busca todas as vagas de estacionamento cadastradas", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso")
+    })
     @GetMapping
     public ResponseEntity<Page<ParkingSpotDto>> getAllParkingSpots(
             @PageableDefault(page = 0, size = 10, sort = "registrationDate", direction = Sort.Direction.DESC) Pageable pageable) {
