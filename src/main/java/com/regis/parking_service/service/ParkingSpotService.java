@@ -1,9 +1,12 @@
 package com.regis.parking_service.service;
 
-import com.regis.parking_service.controller.dto.ParkingSpotRequestDto;
+import com.regis.parking_service.controller.dto.ParkingSpotDto;
 import com.regis.parking_service.entity.ParkingSpot;
 import com.regis.parking_service.repository.ParkingSpotRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,29 +24,40 @@ public class ParkingSpotService {
     @Autowired
     private ParkingSpotRepository parkingSpotRepository;
 
-    public ResponseEntity createNewParkingSpot(ParkingSpotRequestDto parkingSpotRequestDto) {
-        parkingSpotValidator.validateRequest(parkingSpotRequestDto);
+    public ResponseEntity createNewParkingSpot(ParkingSpotDto parkingSpotDto) {
+        parkingSpotValidator.validateRequest(parkingSpotDto);
 
-        ParkingSpot parkingSpot = parkingSpotFactory(parkingSpotRequestDto);
+        ParkingSpot parkingSpot = parkingSpotFactory(parkingSpotDto);
 
         parkingSpotRepository.save(parkingSpot);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    public ParkingSpot parkingSpotFactory(ParkingSpotRequestDto parkingSpotRequestDto) {
+    private ParkingSpot parkingSpotFactory(ParkingSpotDto parkingSpotDto) {
         return ParkingSpot.builder()
                 .id(UUID.randomUUID())
-                .parkingSpotNumber(parkingSpotRequestDto.parkingSpotNumber())
-                .licensePlate(parkingSpotRequestDto.licensePlate())
-                .carBrand(parkingSpotRequestDto.carBrand())
-                .carModel(parkingSpotRequestDto.carModel())
-                .carColor(parkingSpotRequestDto.carColor())
+                .parkingSpotNumber(parkingSpotDto.getParkingSpotNumber())
+                .licensePlate(parkingSpotDto.getLicensePlate())
+                .carBrand(parkingSpotDto.getCarBrand())
+                .carModel(parkingSpotDto.getCarModel())
+                .carColor(parkingSpotDto.getCarColor())
                 .registrationDate(OffsetDateTime.now(ZoneId.of("UTC")))
-                .responsibleName(parkingSpotRequestDto.responsibleName())
-                .apartment(parkingSpotRequestDto.apartment())
-                .block(parkingSpotRequestDto.block())
+                .responsibleName(parkingSpotDto.getResponsibleName())
+                .apartment(parkingSpotDto.getApartment())
+                .block(parkingSpotDto.getBlock())
                 .build();
     }
 
+    public Page<ParkingSpotDto> getAllParkingSpots(Pageable pageable) {
+        Page<ParkingSpot> all = parkingSpotRepository.findAll(pageable);
+        Page<ParkingSpotDto> parkingSpotDtos = mapEntityPageIntoDtoPage(all, ParkingSpotDto.class);
+
+        return parkingSpotDtos;
+    }
+
+    public <D, T> Page<D> mapEntityPageIntoDtoPage(Page<T> entities, Class<D> dtoClass) {
+        ModelMapper modelMapper = new ModelMapper();
+        return entities.map(objectEntity -> modelMapper.map(objectEntity, dtoClass));
+    }
 }
