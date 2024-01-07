@@ -26,4 +26,5 @@ Exemplo de payload:
 TODO:
 - JWT
 - Documentação
-- Escrever teste unitário
+- Escrever teste unitário regras
+- Escrever teste unitário controller
