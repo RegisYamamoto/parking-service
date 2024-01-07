@@ -1,5 +1,5 @@
 CREATE TABLE parking_spot(
-    id BINARY(36) PRIMARY KEY,
+    id BINARY(16) PRIMARY KEY,
     parking_spot_number VARCHAR(10) NOT NULL COMMENT 'Número da vaga do estacionamento',
     license_plate VARCHAR(8) NOT NULL COMMENT 'Placa do carro',
     car_brand VARCHAR(70) NOT NULL COMMENT 'Marca do carro',

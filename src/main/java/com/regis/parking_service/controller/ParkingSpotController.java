@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @CrossOrigin(origins = "http://example.com", maxAge = 3600)
 @RequestMapping(value = "/parking-spots")
@@ -49,6 +51,16 @@ public class ParkingSpotController {
     public ResponseEntity<Page<ParkingSpotDto>> getAllParkingSpots(
             @PageableDefault(page = 0, size = 10, sort = "registrationDate", direction = Sort.Direction.DESC) Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.getAllParkingSpots(pageable));
+    }
+
+    @Operation(summary = "Busca uma vagas de estacionamento por id", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso")
+    })
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<ParkingSpotDto> getOneParkingSpot(@PathVariable UUID id) {
+        ParkingSpotDto parkingSpotDto = parkingSpotService.getOneParkingSpot(id);
+        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotDto);
     }
 
 }
