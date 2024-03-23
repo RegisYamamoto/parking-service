@@ -3,8 +3,6 @@ package com.regis.parking_service.service;
 import com.regis.parking_service.controller.dto.ParkingSpotDto;
 import com.regis.parking_service.entity.ParkingSpot;
 import com.regis.parking_service.repository.ParkingSpotRepository;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
