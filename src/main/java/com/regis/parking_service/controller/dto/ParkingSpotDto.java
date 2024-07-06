@@ -7,32 +7,18 @@ import lombok.*;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-@Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-public class ParkingSpotDto {
-    private UUID id;
-    @NotNull
-    @NotBlank
-    private String parkingSpotNumber;
-    @NotNull
-    @NotBlank
-    private String licensePlate;
-    @NotNull
-    @NotBlank
-    private String carBrand;
-    @NotNull
-    @NotBlank
-    private String carModel;
-    @NotNull
-    @NotBlank
-    private String carColor;
-    private OffsetDateTime registrationDate;
-    @NotNull
-    @NotBlank
-    private String responsibleName;
-    private String apartment;
-    private String block;
+public record ParkingSpotDto(
+        UUID id,
+        @NotNull @NotBlank String parkingSpotNumber,
+        @NotNull @NotBlank String licensePlate,
+        @NotNull @NotBlank String carBrand,
+        @NotNull @NotBlank String carModel,
+        @NotNull @NotBlank String carColor,
+        OffsetDateTime registrationDate,
+        @NotNull @NotBlank String responsibleName,
+        String apartment,
+        String block
+) {
+    // Since records are immutable, no setters or builders are provided.
+    // If you need to create a modified version of an instance, you can use the 'with' method.
 }

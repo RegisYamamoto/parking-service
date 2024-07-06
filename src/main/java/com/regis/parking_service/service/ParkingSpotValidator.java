@@ -14,13 +14,13 @@ public class ParkingSpotValidator {
     private ParkingSpotRepository parkingSpotRepository;
 
     public void validateRequest(ParkingSpotDto parkingSpotRequestDto) {
-        if (existsByLicensePlateCar(parkingSpotRequestDto.getLicensePlate())) {
+        if (existsByLicensePlateCar(parkingSpotRequestDto.licensePlate())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Ja existe a placa desse veiculo cadastrada no sistema");
         }
-        if (existsByParkingSpotNumber(parkingSpotRequestDto.getParkingSpotNumber())) {
+        if (existsByParkingSpotNumber(parkingSpotRequestDto.parkingSpotNumber())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Essa vaga ja esta cadastrada para outro usuario");
         }
-        if (existsByApartmentAndBlock(parkingSpotRequestDto.getApartment(), parkingSpotRequestDto.getBlock())) {
+        if (existsByApartmentAndBlock(parkingSpotRequestDto.apartment(), parkingSpotRequestDto.block())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Essa vaga ja esta cadastrada para outro apartamento");
         }
     }
