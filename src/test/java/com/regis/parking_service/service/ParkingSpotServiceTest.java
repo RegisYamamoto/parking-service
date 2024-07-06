@@ -29,16 +29,7 @@ public class ParkingSpotServiceTest {
             if (m.getName().equals("parkingSpotFactory")) {
                 m.setAccessible(true);
                 ParkingSpotDto parkingSpotDto = new ParkingSpotDto(
-                        UUID.randomUUID(),
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null);
+                        UUID.randomUUID());
 
                 // Chama o método ParkingSpotService.parkingSpotFactory passando o parkingSpotDto como parametro
                 ParkingSpot response = (ParkingSpot) m.invoke(parkingSpotService, parkingSpotDto);
