@@ -38,16 +38,16 @@ public class ParkingSpotService {
 
     private ParkingSpot parkingSpotFactory(ParkingSpotDto parkingSpotDto) {
         return ParkingSpot.builder()
-                .id(UUID.randomUUID())
-                .parkingSpotNumber(parkingSpotDto.parkingSpotNumber())
-                .licensePlate(parkingSpotDto.licensePlate())
-                .carBrand(parkingSpotDto.carBrand())
-                .carModel(parkingSpotDto.carModel())
-                .carColor(parkingSpotDto.carColor())
+                .uuid(UUID.randomUUID())
+                .parkingSpotNumber(parkingSpotDto.getParkingSpotNumber())
+                .licensePlate(parkingSpotDto.getLicensePlate())
+                .carBrand(parkingSpotDto.getCarBrand())
+                .carModel(parkingSpotDto.getCarModel())
+                .carColor(parkingSpotDto.getCarColor())
                 .registrationDate(OffsetDateTime.now(ZoneId.of("UTC")))
-                .responsibleName(parkingSpotDto.responsibleName())
-                .apartment(parkingSpotDto.apartment())
-                .block(parkingSpotDto.block())
+                .responsibleName(parkingSpotDto.getResponsibleName())
+                .apartment(parkingSpotDto.getApartment())
+                .block(parkingSpotDto.getBlock())
                 .build();
     }
 
@@ -67,17 +67,18 @@ public class ParkingSpotService {
 
         ParkingSpot parkingSpot = parkingSpotOptional.get();
 
-        return new ParkingSpotDto(
-                parkingSpot.getId(),
-                parkingSpot.getParkingSpotNumber(),
-                parkingSpot.getLicensePlate(),
-                parkingSpot.getCarBrand(),
-                parkingSpot.getCarModel(),
-                parkingSpot.getCarColor(),
-                parkingSpot.getRegistrationDate(),
-                parkingSpot.getResponsibleName(),
-                parkingSpot.getApartment(),
-                parkingSpot.getBlock());
+        return ParkingSpotDto.builder()
+                .uuid(parkingSpot.getUuid())
+                .parkingSpotNumber(parkingSpot.getParkingSpotNumber())
+                .licensePlate(parkingSpot.getLicensePlate())
+                .carBrand(parkingSpot.getCarBrand())
+                .carModel(parkingSpot.getCarModel())
+                .carColor(parkingSpot.getCarColor())
+                .registrationDate(parkingSpot.getRegistrationDate())
+                .responsibleName(parkingSpot.getResponsibleName())
+                .apartment(parkingSpot.getApartment())
+                .block(parkingSpot.getBlock())
+                .build();
     }
 
     public <D, T> Page<D> mapEntityPageIntoDtoPage(Page<T> entities, Class<D> dtoClass) {

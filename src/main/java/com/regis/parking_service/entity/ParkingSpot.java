@@ -2,6 +2,8 @@ package com.regis.parking_service.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
@@ -18,8 +20,12 @@ import java.util.UUID;
 public class ParkingSpot {
 
     @Id
-    @Column(name = "id", nullable = false, length = 36)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "uuid", nullable = false, length = 36)
+    private UUID uuid;
 
     @Column(name = "parking_spot_number", nullable = false, length = 10)
     private String parkingSpotNumber;

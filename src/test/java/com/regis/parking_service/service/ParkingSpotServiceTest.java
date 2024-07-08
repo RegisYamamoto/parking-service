@@ -28,8 +28,9 @@ public class ParkingSpotServiceTest {
             // Se o método for igual a parkingSpotFactory, entra no if
             if (m.getName().equals("parkingSpotFactory")) {
                 m.setAccessible(true);
-                ParkingSpotDto parkingSpotDto = new ParkingSpotDto(
-                        UUID.randomUUID());
+                ParkingSpotDto parkingSpotDto = ParkingSpotDto.builder()
+                        .uuid(UUID.randomUUID())
+                        .build();
 
                 // Chama o método ParkingSpotService.parkingSpotFactory passando o parkingSpotDto como parametro
                 ParkingSpot response = (ParkingSpot) m.invoke(parkingSpotService, parkingSpotDto);

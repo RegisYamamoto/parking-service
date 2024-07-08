@@ -1,5 +1,6 @@
 CREATE TABLE parking_spot(
-    id BINARY(16) PRIMARY KEY,
+    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Id unico, autoincrement',
+    uuid BINARY(16) NOT NULL COMMENT 'UUID',
     parking_spot_number VARCHAR(10) NOT NULL COMMENT 'Número da vaga do estacionamento',
     license_plate VARCHAR(8) NOT NULL COMMENT 'Placa do carro',
     car_brand VARCHAR(70) NOT NULL COMMENT 'Marca do carro',
