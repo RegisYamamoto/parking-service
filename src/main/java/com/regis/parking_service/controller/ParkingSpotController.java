@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "http://example.com", maxAge = 3600)
-@RequestMapping(value = "/parking-spots")
+@RequestMapping(value = "/public/parking-spots")
 @Tag(name = "parking-spot-api")
 public class ParkingSpotController {
 
