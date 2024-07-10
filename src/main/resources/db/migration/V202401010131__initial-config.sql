@@ -11,3 +11,20 @@ CREATE TABLE parking_spot(
     apartment VARCHAR(30) COMMENT 'Apartamento',
     block VARCHAR(30) COMMENT 'Bloco'
 );
+
+CREATE TABLE user_role (
+    id INT NOT NULL PRIMARY KEY UNIQUE COMMENT 'Id unico',
+    role VARCHAR(20) NOT NULL UNIQUE COMMENT 'Nivel de acesso'
+);
+
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY UNIQUE NOT NULL AUTO_INCREMENT COMMENT 'Id unico, autoincrement',
+    uuid BINARY(16) NOT NULL COMMENT 'UUID',
+    email VARCHAR(100) NOT NULL UNIQUE COMMENT 'Email de login',
+    password VARCHAR(100) NOT NULL COMMENT 'Senha',
+    role INT NOT NULL COMMENT 'Nivel de acesso',
+    FOREIGN KEY (role) REFERENCES user_role(id)
+);
+
+INSERT INTO user_role (id, role) values (1, 'ADMIN');
+INSERT INTO user_role (id, role) values (2, 'USER');
