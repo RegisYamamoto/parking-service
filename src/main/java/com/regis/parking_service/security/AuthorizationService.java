@@ -1,4 +1,4 @@
-package com.regis.parking_service.service;
+package com.regis.parking_service.security;
 
 import com.regis.parking_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

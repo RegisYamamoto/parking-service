@@ -1,6 +1,7 @@
-package com.regis.parking_service.controller;
+package com.regis.parking_service.security;
 
 import com.regis.parking_service.controller.dto.AuthenticationDto;
+import com.regis.parking_service.entity.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,14 +21,19 @@ public class AuthenticationController {
   @Autowired
   private AuthenticationManager authenticationManager;
 
+  @Autowired
+  private TokenService tokenService;
+
   @PostMapping("/login")
   public ResponseEntity login(@RequestBody @Valid AuthenticationDto authenticationDto) {
-    var usernamePasswordAuthenticationToken =
+    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
         new UsernamePasswordAuthenticationToken(authenticationDto.email(), authenticationDto.password());
 
     Authentication authenticate =
         authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
-    return ResponseEntity.status(HttpStatus.OK).build();
+    String token = tokenService.generateToken((User) authenticate.getPrincipal());
+
+    return ResponseEntity.status(HttpStatus.OK).body(token);
   }
 }
