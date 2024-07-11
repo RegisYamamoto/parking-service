@@ -9,13 +9,24 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   show-sql: true
 
+# Configuração necessária para o org.springframework.web.server.ResponseStatusException
 server:
   error:
     include-message: always
 
+# Configuração para rodar o Flyway quando iniciar a aplicação
 migrate-at-start: true
 
+# Secret (chave privada) usada para criar o JWT token
 api:
   security:
     token:
       secret: ${JWT_SECRET:my-secret-key}
+
+# Configuração para o Spring Actuator mostrar todos os endpoints existentes
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
