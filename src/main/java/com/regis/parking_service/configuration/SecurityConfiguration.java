@@ -1,5 +1,6 @@
-package com.regis.parking_service.security;
+package com.regis.parking_service.configuration;
 
+import com.regis.parking_service.security.SecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
