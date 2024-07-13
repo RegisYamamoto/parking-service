@@ -1,3 +1,9 @@
 package com.regis.parking_service.controller.dto;
 
-public record AuthenticationDto(String email, String password) {}
+import lombok.Data;
+
+@Data
+public class AuthenticationDto {
+  private String email;
+  private String password;
+}

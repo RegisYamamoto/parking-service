@@ -15,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ParkingSpotDto {
+    private Long id;
     private UUID uuid;
     @NotNull @NotBlank
     private String parkingSpotNumber;

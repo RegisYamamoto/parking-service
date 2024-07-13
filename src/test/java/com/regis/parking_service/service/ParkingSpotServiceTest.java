@@ -2,7 +2,6 @@ package com.regis.parking_service.service;
 
 import com.regis.parking_service.controller.dto.ParkingSpotDto;
 import com.regis.parking_service.entity.ParkingSpot;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

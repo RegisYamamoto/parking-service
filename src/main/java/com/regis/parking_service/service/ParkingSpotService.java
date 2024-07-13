@@ -3,13 +3,14 @@ package com.regis.parking_service.service;
 import com.regis.parking_service.controller.dto.ParkingSpotDto;
 import com.regis.parking_service.entity.ParkingSpot;
 import com.regis.parking_service.repository.ParkingSpotRepository;
-import org.modelmapper.ModelMapper;
+import com.regis.parking_service.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.OffsetDateTime;
@@ -52,14 +53,13 @@ public class ParkingSpotService {
     }
 
     public Page<ParkingSpotDto> getAllParkingSpots(Pageable pageable) {
-        Page<ParkingSpot> all = parkingSpotRepository.findAll(pageable);
-        Page<ParkingSpotDto> parkingSpotDtos = mapEntityPageIntoDtoPage(all, ParkingSpotDto.class);
-
+        Page<ParkingSpot> parkingSpotList = parkingSpotRepository.findAll(pageable);
+        Page<ParkingSpotDto> parkingSpotDtos = Utils.mapEntityPageIntoDtoPage(parkingSpotList, ParkingSpotDto.class);
         return parkingSpotDtos;
     }
 
-    public ParkingSpotDto getOneParkingSpot(UUID id) {
-        Optional<ParkingSpot> parkingSpotOptional = parkingSpotRepository.findById(id);
+    public ParkingSpotDto getOneParkingSpot(@PathVariable UUID uuid) {
+        Optional<ParkingSpot> parkingSpotOptional = parkingSpotRepository.findByUuid(uuid);
 
         if (!parkingSpotOptional.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Vaga não existe");
@@ -81,9 +81,6 @@ public class ParkingSpotService {
                 .build();
     }
 
-    public <D, T> Page<D> mapEntityPageIntoDtoPage(Page<T> entities, Class<D> dtoClass) {
-        ModelMapper modelMapper = new ModelMapper();
-        return entities.map(objectEntity -> modelMapper.map(objectEntity, dtoClass));
-    }
+
 
 }
