@@ -23,8 +23,17 @@ Exemplo de payload:
 }
 ```
 
+Comando para criar imagem a partir do Docker file.
+docker build -t parking-service:1.0 .
+
+Comando para executar a imagem:
+docker run -p 8080:8080 parking-service:1.0
+
 TODO:
 - JWT
 - Documentação
 - Escrever teste unitário regras
 - Escrever teste unitário controller
+
+
+
