@@ -2,10 +2,6 @@ package com.regis.parking_service.controller;
 
 import com.regis.parking_service.controller.dto.ParkingSpotDto;
 import com.regis.parking_service.service.ParkingSpotService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,20 +17,12 @@ import java.util.UUID;
 @RestController
 @CrossOrigin(origins = "http://example.com", maxAge = 3600)
 @RequestMapping(value = "/parking-spots")
-@Tag(name = "parking-spot-api")
 public class ParkingSpotController {
 
     @Autowired
     private ParkingSpotService parkingSpotService;
 
     @PostMapping
-    @Operation(summary = "Realiza o cadastro de vagas de estacionamento", method = "POST")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Vaga do estacionamento cadastrada com sucesso"),
-            @ApiResponse(responseCode = "409", description =
-                    "Ja existe a placa desse veiculo cadastrada no sistema ou Essa vaga ja esta cadastrada para" +
-                            "outro usuario ou Essa vaga ja esta cadastrada para outro apartamento")
-    })
     public ResponseEntity saveParkingSpot(
             @RequestBody @Valid ParkingSpotDto parkingSpotRequestDto) {
 
@@ -43,24 +31,15 @@ public class ParkingSpotController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @Operation(summary = "Busca todas as vagas de estacionamento cadastradas", method = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso")
-    })
     @GetMapping
     public ResponseEntity<Page<ParkingSpotDto>> getAllParkingSpots(
             @PageableDefault(page = 0, size = 10, sort = "registrationDate", direction = Sort.Direction.DESC) Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.getAllParkingSpots(pageable));
     }
 
-    @Operation(summary = "Busca uma vagas de estacionamento por id", method = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso")
-    })
     @GetMapping(value = "/{id}")
     public ResponseEntity<ParkingSpotDto> getOneParkingSpot(@PathVariable UUID id) {
         ParkingSpotDto parkingSpotDto = parkingSpotService.getOneParkingSpot(id);
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotDto);
     }
-
 }
