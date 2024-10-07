@@ -28,6 +28,7 @@ public class SecurityConfiguration {
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+            .requestMatchers("/error").permitAll() // Tem que adicionar essa permissão senão todos os erros da aplicação retornarão 403 Forbidden
             .requestMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
             .requestMatchers(HttpMethod.GET, "/actuator/**").hasRole("ADMIN")
             .requestMatchers(HttpMethod.POST, "/parking-spots").hasRole("ADMIN")
