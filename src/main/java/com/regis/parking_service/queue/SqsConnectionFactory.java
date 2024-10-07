@@ -1,5 +1,7 @@
 package com.regis.parking_service.queue;
 
+import static com.amazonaws.services.sqs.AmazonSQSClientBuilder.EndpointConfiguration;
+
 import com.amazon.sqs.javamessaging.ProviderConfiguration;
 import com.amazon.sqs.javamessaging.SQSConnection;
 import com.amazon.sqs.javamessaging.SQSConnectionFactory;
@@ -7,8 +9,6 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQS;
-import static com.amazonaws.services.sqs.AmazonSQSClientBuilder.EndpointConfiguration;
-
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

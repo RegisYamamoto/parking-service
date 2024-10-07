@@ -26,8 +26,8 @@ public class EmailService {
       CompletableFuture completableFuture = CompletableFuture.runAsync(() -> {
           try {
             log.info("Enviando email para: " + email.getReceiver());
-            sqsMessageSender.send();
-          } catch (JMSException e) {
+            // Enviar email para algum serviço de emails com o Madrill por exemplo
+          } catch (RuntimeException e) {
             throw new RuntimeException("Erro ao enviar a mensagem para a fila do SQS", e);
           }
       });
