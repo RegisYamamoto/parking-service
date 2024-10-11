@@ -28,4 +28,13 @@ public enum UserRole {
     }
     return null;
   }
+
+  public static String getRoleById(int id) {
+    for (UserRole userRole : values()) {
+      if (userRole.id.equals(id)) {
+        return userRole.getRole();
+      }
+    }
+    return null;
+  }
 }

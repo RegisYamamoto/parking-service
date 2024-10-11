@@ -1,11 +1,13 @@
 package com.regis.parking_service.controller.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
-public class UserDto {
+@NoArgsConstructor
+public class UserRequestDto {
   private Long id;
   private UUID uuid;
   private String email;
