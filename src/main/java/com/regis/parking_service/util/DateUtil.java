@@ -14,7 +14,7 @@ import java.time.ZoneId;
 public class DateUtil {
 
     @PostConstruct
-    public void DateTimeDifference() {
+    public void dateTimeDifference() {
         // No Instant o timezone já é UTC por padrão
         Instant instant = Instant.now();
         log.info("instant: {}", instant); // ex: 2024-10-22T23:44:31.902457500Z
