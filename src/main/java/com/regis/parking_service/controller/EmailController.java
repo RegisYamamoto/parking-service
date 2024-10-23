@@ -24,9 +24,12 @@ public class EmailController {
   private EmailService emailService;
 
   @PostMapping
-  public ResponseEntity sendEmails(@RequestBody @Valid List<Email> emails)
-    throws ExecutionException, InterruptedException {
-    emailService.sendEmails(emails);
-    return ResponseEntity.status(HttpStatus.OK).build();
+  public ResponseEntity<String> sendEmails(@RequestBody @Valid List<Email> emails) {
+    try {
+      emailService.sendEmails(emails);
+      return ResponseEntity.status(HttpStatus.OK).build();
+    } catch (ExecutionException | InterruptedException e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao enviar email. Mensagem de erro: " + e.getMessage());
+    }
   }
 }
